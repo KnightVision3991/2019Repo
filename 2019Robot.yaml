@@ -162,6 +162,34 @@ Children:
           value: '7'
       Base: Talon SRX
       Name: armSlave
+    - Children: []
+      Properties:
+        Forward PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id003
+          default: '0'
+          name: Forward PCM (Solenoid)
+          validators: *id004
+          value: '0'
+        Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id005
+          default: '0'
+          name: Reverse PCM (Solenoid)
+          validators: *id006
+          value: '0'
+        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '0'
+          name: Reverse Channel (Solenoid)
+          validators: *id008
+          value: '7'
+        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id009
+          default: '0'
+          name: Forward Channel (Solenoid)
+          validators: *id010
+          value: '6'
+      Base: Double Solenoid
+      Name: armBrake
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -298,10 +326,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id012 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id012
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -327,10 +355,12 @@ Properties:
     name: Export Subsystems, validators: null, value: true}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ghftf\',
-    extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\ghftf\'}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ghftf\FRCProjects',
-    extension: null, folder: true, name: Export Directory, validators: null, value: 'C:\Users\ghftf\FRCProjects'}
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Gregory
+      Field\', extension: null, folder: true, name: Wiring file location, validators: null,
+    value: 'C:\Users\ghftf\'}
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Gregory
+      Field\FRCProjects', extension: null, folder: true, name: Export Directory, validators: null,
+    value: 'C:\Users\ghftf\FRCProjects'}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
 Base: Robot

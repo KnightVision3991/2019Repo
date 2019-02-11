@@ -9,19 +9,21 @@ package org.usfirst.frc3991.TheActualRealOof;
 
 /**
  * Add your docs here.
- * 
- * 
  */
-public class Constants {
-    //set PID slot for all
-    public static final int kSlotIdx = 0;
-    //set PID loop for all
-    public static final int kPIDLoopIdx = 0;
-    //set timeout setting
-    public static final int kTimeoutMs = 0;
-    //set constansts for different outputs
-    //Gains(kp, ki, kd, kf, izone, peak output);
-    static final Gains driveGains = new Gains(0.15, 0.0, 1.0, 0.0, 0, 1.0);
-    static final Gains armGains = new Gains(0, 0, 0, 0, 0, 0);
-    }
-    
+    public class Gains {
+        public final double kP;
+        public final double kI;
+        public final double kD;
+        public final double kF;
+        public final int kIzone;
+        public final double kPeakOutput;
+        
+        public Gains(double _kP, double _kI, double _kD, double _kF, int _kIzone, double _kPeakOutput){
+            kP = _kP;
+            kI = _kI;
+            kD = _kD;
+            kF = _kF;
+            kIzone = _kIzone;
+            kPeakOutput = _kPeakOutput;
+        }
+}

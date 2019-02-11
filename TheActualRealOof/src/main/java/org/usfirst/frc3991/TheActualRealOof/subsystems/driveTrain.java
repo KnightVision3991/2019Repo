@@ -111,11 +111,6 @@ public class driveTrain extends PIDSubsystem {
     }
 
     @Override
-<<<<<<< HEAD
-    public void periodic() {
-        // Put code here to be run every loop
-        
-=======
   protected double returnPIDInput() {
     // Return your input value for the PID loop
     // e.g. a sensor, like a potentiometer:
@@ -174,7 +169,6 @@ public class driveTrain extends PIDSubsystem {
 
     /*for(int i = 1; i < RobotMap.driveTrainMotors.length/2; i++) {
         driveTrainMotors[i].set(ControlMode.Follower, driveTrainMotors[0].getDeviceID());
->>>>>>> 20dd55278e364e06ff922fd0e5b71e50428e602e
     }
 
     for(int i = (RobotMap.driveTrainMotors.length/2) + 1; i < RobotMap.driveTrainMotors.length; i++) {

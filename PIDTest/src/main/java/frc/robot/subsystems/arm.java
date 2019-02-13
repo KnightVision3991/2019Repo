@@ -12,9 +12,11 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import frc.robot.*;
+import frc.robot.RobotMap;
 import frc.robot.commands.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import frc.robot.OI;
 
 /**
  * Add your docs here.
@@ -22,8 +24,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static WPI_TalonSRX main = RobotMap.test;
-  public static WPI_TalonSRX slave = RobotMap.slave;
+  public static WPI_TalonSRX main = RobotMap.test1;
+  public static WPI_TalonSRX slave = RobotMap.testSlave;
   public static ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
   public static NetworkTableEntry kP =
     tab.add("P", 0)
@@ -39,6 +41,9 @@ public class arm extends Subsystem {
       .getEntry();
   public static NetworkTableEntry setPoint =
     tab.add("Set Point", 0)
+      .getEntry();
+  public static NetworkTableEntry position =
+    tab.add("position", 0)
       .getEntry();
   
 
@@ -60,6 +65,10 @@ public class arm extends Subsystem {
   }
   public static void useConfigPID(){
     configPID(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), kF.getDouble(0));
+  }
+  public static void updatePos(){
+    int pos = main.getSelectedSensorPosition();
+    position.setDouble(pos);
   }
 
 

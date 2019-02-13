@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.arm;
+import frc.robot.*;
 
 public class moveArm extends Command {
   public moveArm() {
@@ -30,6 +31,7 @@ public class moveArm extends Command {
   protected void execute() {
     arm.main.set(ControlMode.Position, arm.setPoint.getDouble(0));
     arm.slave.follow(arm.main);
+    arm.updatePos();
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -20,8 +19,9 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
-  public static WPI_TalonSRX test = new WPI_TalonSRX(0);
-  public static WPI_TalonSRX slave = new WPI_TalonSRX(1);
+  public static WPI_TalonSRX test1 = new WPI_TalonSRX(0);
+  public static WPI_TalonSRX testSlave = new WPI_TalonSRX(1);
+
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

@@ -17,6 +17,7 @@ public class DriveTrainCommand extends Command {
   driveTrain dt;
 
 
+
   public DriveTrainCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -39,6 +40,7 @@ public class DriveTrainCommand extends Command {
   protected void execute() {
 
     dt.usePIDOutput(0);
+    dt.shift();
 
   }
 

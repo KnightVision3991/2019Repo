@@ -7,6 +7,9 @@
 
 package org.usfirst.frc3991.TheActualRealOof.commands;
 
+import org.usfirst.frc3991.TheActualRealOof.Robot;
+import org.usfirst.frc3991.TheActualRealOof.subsystems.driveTrain;
+
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
@@ -20,11 +23,13 @@ public class shift extends InstantCommand {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.driveTrain);
   }
 
   // Called once when the command executes
   @Override
   protected void initialize() {
+    driveTrain.shift = driveTrain.shift*-1;
   }
 
 }

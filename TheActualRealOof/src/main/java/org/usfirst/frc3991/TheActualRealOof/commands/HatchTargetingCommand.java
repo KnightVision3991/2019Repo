@@ -9,6 +9,7 @@ package org.usfirst.frc3991.TheActualRealOof.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc3991.TheActualRealOof.Robot;
 import org.usfirst.frc3991.TheActualRealOof.RobotMap;
 import org.usfirst.frc3991.TheActualRealOof.subsystems.*;
 import edu.wpi.first.networktables.*;
@@ -17,15 +18,14 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
 
 public class HatchTargetingCommand extends Command {
 
-  driveTrain dt;
-  cargoIntake ci;
+  
 
 
   public HatchTargetingCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(dt);
-    requires(ci);
+    requires(Robot.hatchIntake);
+    requires(Robot.driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -41,8 +41,7 @@ public class HatchTargetingCommand extends Command {
   @Override
   protected void initialize() {
     
-    dt = new driveTrain();
-    ci = new cargoIntake();
+    
 
     table = NetworkTableInstance.getDefault().getTable("limelight");
     TX = table.getEntry("tx");
@@ -107,6 +106,6 @@ public class HatchTargetingCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    dt.killMotors();
+    Robot.driveTrain.killMotors();
   }
 }

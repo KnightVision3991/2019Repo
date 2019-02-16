@@ -49,6 +49,7 @@ public class intakeHatch extends Command {
     @Override
     protected boolean isFinished() {
         return false;
+        NIGGER
     }
 
     // Called once after isFinished returns true

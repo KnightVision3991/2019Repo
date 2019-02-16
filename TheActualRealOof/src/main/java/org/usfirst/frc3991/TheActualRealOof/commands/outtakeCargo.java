@@ -7,6 +7,8 @@
 
 package org.usfirst.frc3991.TheActualRealOof.commands;
 
+import org.usfirst.frc3991.TheActualRealOof.Robot;
+
 import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**
@@ -20,6 +22,7 @@ public class outtakeCargo extends TimedCommand {
     super(timeout);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.cargoIntake);
   }
 
   // Called just before this Command runs the first time
@@ -30,6 +33,7 @@ public class outtakeCargo extends TimedCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.cargoIntake.outtake();
   }
 
   // Called once after timeout

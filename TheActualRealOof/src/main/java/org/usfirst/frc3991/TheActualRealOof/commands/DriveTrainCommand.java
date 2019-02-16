@@ -37,7 +37,6 @@ public class DriveTrainCommand extends Command {
   protected void execute() {
 
     Robot.driveTrain.usePIDOutput(0);
-    Robot.driveTrain.shift();
 
   }
 

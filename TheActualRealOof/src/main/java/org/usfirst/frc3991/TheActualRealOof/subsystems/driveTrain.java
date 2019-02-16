@@ -110,15 +110,13 @@ public class driveTrain extends PIDSubsystem {
 
         setDefaultCommand(new DriveTrainCommand());
     }
-    public void shift(){
-        if(shift == 1){
-            leftShift.set(DoubleSolenoid.Value.kForward);
-            rightShift.set(DoubleSolenoid.Value.kForward);
-        }
-        else{
-            rightShift.set(DoubleSolenoid.Value.kReverse);
-            leftShift.set(DoubleSolenoid.Value.kReverse);
-        }
+    public void shiftUp(){
+        leftShift.set(DoubleSolenoid.Value.kForward);
+        rightShift.set(DoubleSolenoid.Value.kForward);
+    }
+    public void shiftDown(){
+        leftShift.set(DoubleSolenoid.Value.kReverse);
+        rightShift.set(DoubleSolenoid.Value.kReverse);
     }
 
     @Override

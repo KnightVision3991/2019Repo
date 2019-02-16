@@ -92,7 +92,8 @@ public class OI {
             tab.add("armToOuttakeBackPos", new armToOuttakeBackPos());
             tab.add("armToDefencePos", new armToDefence());
             tab.add("hatchTargetingCommand", new HatchTargetingCommand());
-            tab.add("shift", new shift());
+            tab.add("shiftUp", new shiftUp());
+            tab.add("shiftDown", new shiftDown());
         NetworkTableEntry position = 
             tab.add("Arm Position", 0)
                 .getEntry();

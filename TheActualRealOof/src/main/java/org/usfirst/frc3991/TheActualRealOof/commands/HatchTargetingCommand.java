@@ -88,7 +88,9 @@ public class HatchTargetingCommand extends Command {
     leftPower *= RobotMap.driveTrainMaxRPM;
     rightPower *= RobotMap.driveTrainMaxRPM;
 
-
+    Robot.driveTrain.leftPow = leftPower;
+    Robot.driveTrain.rightPow = rightPower;
+    Robot.driveTrain.usePow();
   }
 
   // Make this return true when this Command no longer needs to run execute()

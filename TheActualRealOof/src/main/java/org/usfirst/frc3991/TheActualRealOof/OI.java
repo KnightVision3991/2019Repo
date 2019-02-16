@@ -89,10 +89,13 @@ public class OI {
             tab.add("intakeHatch", new intakeHatch());
             tab.add("moveArm", new moveArm());
             tab.add("outtakeHatch", new outtakeHatch());
-            tab.add("outtakeCargo", new outtakeCargo());
+            tab.add("outtakeCargo", new outtakeCargo(1));
             tab.add("armToIntakePos", new armToIntakePos());
             tab.add("armToOuttakePos", new armToOuttakeFrontPos());
             tab.add("armToOuttakeBackPos", new armToOuttakeBackPos());
+            tab.add("armToDefencePos", new armToDefence());
+            tab.add("hatchTargetingCommand", new HatchTargetingCommand());
+            tab.add("shift", new shift());
         NetworkTableEntry position = 
             tab.add("Arm Position", 0)
                 .getEntry();

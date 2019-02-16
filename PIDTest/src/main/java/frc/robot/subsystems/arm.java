@@ -16,8 +16,6 @@ import frc.robot.RobotMap;
 import frc.robot.commands.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import frc.robot.OI;
-
 /**
  * Add your docs here.
  */

@@ -7,29 +7,24 @@
 
 package org.usfirst.frc3991.TheActualRealOof.commands;
 
-import org.usfirst.frc3991.TheActualRealOof.Robot;
-import org.usfirst.frc3991.TheActualRealOof.subsystems.driveTrain;
-
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  * Add your docs here.
  */
-public class shift extends InstantCommand {
+public class shiftDown extends InstantCommand {
   /**
    * Add your docs here.
    */
-  public shift() {
+  public shiftDown() {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.driveTrain);
   }
 
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.driveTrain.shift = Robot.driveTrain.shift*-1;
   }
 
 }

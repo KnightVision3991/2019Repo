@@ -135,15 +135,26 @@ public class driveTrain extends PIDSubsystem {
   public double leftPow;
   public double rightPow;
 
+  public void usePow() {
 
-  public void killMotors() {
-      //LEFT SIDE
-    driveTrainMotors[1].set(ControlMode.Velocity, 0); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
+    //LEFT SIDE
+    driveTrainMotors[0].set(ControlMode.Velocity, leftPow); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
     
 
 
     //RIGHT SIDE 
-    driveTrainMotors[(RobotMap.driveTrainMotors.length/2) + 1].set(ControlMode.Velocity, 0); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
+    driveTrainMotors[(RobotMap.driveTrainMotors.length/2)].set(ControlMode.Velocity, rightPow); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
+
+  }
+
+  public void killMotors() {
+      //LEFT SIDE
+    driveTrainMotors[0].set(ControlMode.Velocity, 0); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
+    
+
+
+    //RIGHT SIDE 
+    driveTrainMotors[(RobotMap.driveTrainMotors.length/2)].set(ControlMode.Velocity, 0); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
 
 
     
@@ -170,12 +181,12 @@ public class driveTrain extends PIDSubsystem {
 
 
     //LEFT SIDE
-    driveTrainMotors[1].set(ControlMode.Velocity, leftPow); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
+    driveTrainMotors[0].set(ControlMode.Velocity, leftPow); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
     
 
 
     //RIGHT SIDE 
-    driveTrainMotors[(RobotMap.driveTrainMotors.length/2) + 1].set(ControlMode.Velocity, rightPow); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
+    driveTrainMotors[(RobotMap.driveTrainMotors.length/2)].set(ControlMode.Velocity, rightPow); //USE THIS TO SET DESIRED TARGET FOR PID TO REACH TOO
 
 
     /*for(int i = 1; i < RobotMap.driveTrainMotors.length/2; i++) {

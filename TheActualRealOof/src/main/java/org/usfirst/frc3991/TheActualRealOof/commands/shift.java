@@ -29,7 +29,7 @@ public class shift extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    driveTrain.shift = driveTrain.shift*-1;
+    Robot.driveTrain.shift = Robot.driveTrain.shift*-1;
   }
 
 }

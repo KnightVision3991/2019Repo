@@ -7,14 +7,13 @@
 
 package org.usfirst.frc3991.TheActualRealOof.commands;
 
+import org.usfirst.frc3991.TheActualRealOof.Robot;
 import org.usfirst.frc3991.TheActualRealOof.subsystems.driveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveTrainCommand extends Command {
 
-
-  driveTrain dt;
 
 
 
@@ -23,7 +22,7 @@ public class DriveTrainCommand extends Command {
     // eg. requires(chassis);
 
 
-    requires(dt);
+    requires(Robot.driveTrain);
 
   }
 
@@ -31,16 +30,14 @@ public class DriveTrainCommand extends Command {
   @Override
   protected void initialize() {
 
-    dt = new driveTrain();
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    dt.usePIDOutput(0);
-    dt.shift();
+    Robot.driveTrain.usePIDOutput(0);
+    Robot.driveTrain.shift();
 
   }
 
@@ -60,7 +57,7 @@ public class DriveTrainCommand extends Command {
   @Override
   protected void interrupted() {
 
-    dt.killMotors();
+    Robot.driveTrain.killMotors();
 
   }
 }

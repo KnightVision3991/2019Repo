@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc3991.TheActualRealOof.Constants;
@@ -55,6 +56,7 @@ public class moveArm extends Command {
         oof.config_kI(Constants.kSlotIdx, Constants.armGains.kI);
         oof.config_kP(Constants.kSlotIdx, Constants.armGains.kP);
         oof.config_kF(Constants.kSlotIdx, Constants.armGains.kF);
+        oof.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     }
 
     // Called repeatedly when this Command is scheduled to run

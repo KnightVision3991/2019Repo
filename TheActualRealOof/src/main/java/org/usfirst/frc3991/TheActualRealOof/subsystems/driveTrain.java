@@ -124,6 +124,10 @@ public class driveTrain extends PIDSubsystem {
         driveTrainMotors[4].follow(driveTrainMotors[3]);
         driveTrainMotors[5].follow(driveTrainMotors[3]);
     }
+    public void initEncoders(){
+        driveTrainMotors[0].configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        driveTrainMotors[3].configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    }
 
     @Override
   protected double returnPIDInput() {

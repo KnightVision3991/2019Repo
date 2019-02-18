@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.arm;
@@ -17,19 +18,21 @@ public class moveArm extends Command {
   public moveArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(new arm());
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     arm.useConfigPID();
+    arm.main.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    arm.main.set(ControlMode.Position, arm.setPoint.getDouble(0));
+    double oof = arm.setPoint.getDouble(0);
+    arm.main.set(ControlMode.Position, oof);
     arm.slave.follow(arm.main);
     arm.updatePos();
   }

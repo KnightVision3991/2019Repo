@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.Robot;
 import frc.robot.subsystems.*;
 
 /**
@@ -21,7 +22,7 @@ public class configPID extends InstantCommand {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(new arm());
+    requires(Robot.arm);
   }
 
   // Called once when the command executes

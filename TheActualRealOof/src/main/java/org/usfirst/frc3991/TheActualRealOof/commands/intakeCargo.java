@@ -43,31 +43,32 @@ public class intakeCargo extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.cargoIntake.intake();
+        double bigoof = Robot.oi.getJoystick1().getRawAxis(1);
+        Robot.cargoIntake.intake(bigoof);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        if(Robot.cargoIntake.getVoltage() > 4){
+        /*if(Robot.cargoIntake.getVoltage() > 4){
             return true;
         }
         else{
             return false;
-        }
-
+        } */
+        return false;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.cargoIntake.stop();
+        //Robot.cargoIntake.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-        Robot.cargoIntake.stop();
+        //Robot.cargoIntake.stop();
     }
 }

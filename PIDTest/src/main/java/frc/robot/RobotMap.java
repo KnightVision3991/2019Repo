@@ -19,8 +19,8 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
-  public static WPI_TalonSRX test1 = new WPI_TalonSRX(0);
-  public static WPI_TalonSRX testSlave = new WPI_TalonSRX(1);
+  public static WPI_TalonSRX test1 = new WPI_TalonSRX(6);
+  public static WPI_TalonSRX testSlave = new WPI_TalonSRX(7);
 
 
   // If you are using multiple modules, make sure to define both the port

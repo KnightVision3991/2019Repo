@@ -26,13 +26,13 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
   public static motorPIDConfig[] driveTrainMotorPIDConfigs = {
-    new motorPIDConfig(1, 1, 1),
-    new motorPIDConfig(1, 1, 1),
-    new motorPIDConfig(1, 1, 1),
+    new motorPIDConfig(1, 0, .2),
+    new motorPIDConfig(1, 0, .2),
+    new motorPIDConfig(1, 0, .2),
 
-    new motorPIDConfig(1, 1, 1),
-    new motorPIDConfig(1, 1, 1),
-    new motorPIDConfig(1, 1, 1)
+    new motorPIDConfig(1, 0, .2),
+    new motorPIDConfig(1, 0, .2),
+    new motorPIDConfig(1, 0, .2)
 
 
   };
@@ -48,7 +48,7 @@ public class RobotMap {
 
   public static int driveTrainMotorAmount = 6;
 
-  public static double driveTrainMaxRPM = 4000;
+  public static double driveTrainMaxRPM = 1000;
   
 
 }

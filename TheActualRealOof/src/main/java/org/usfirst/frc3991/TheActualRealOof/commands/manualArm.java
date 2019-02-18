@@ -7,58 +7,28 @@
 
 package org.usfirst.frc3991.TheActualRealOof.commands;
 
-import javax.swing.text.StyleContext.SmallAttributeSet;
-
 import org.usfirst.frc3991.TheActualRealOof.Robot;
-import org.usfirst.frc3991.TheActualRealOof.subsystems.driveTrain;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.shuffleboard.*;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveTrainCommand extends Command {
-
-
-
-
-  public DriveTrainCommand() {
+public class manualArm extends Command {
+  public manualArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-
-
-    requires(Robot.driveTrain);
-
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    //Robot.driveTrain.usePIDOutput(0);
-    
-    NetworkTableEntry big_oof = 
-            tab.add("oof", 0)
-                .getEntry();
-        big_oof.setDouble(oof);
-
-    while(!isFinished()) {
-      Robot.driveTrain.manualDrive(Robot.oi.joystick1.getRawAxis(3) - Robot.oi.joystick1.getRawAxis(2));
-      oof = oof++;
-      big_oof.setDouble(oof);
-
-    }
-
+    double throttle = Robot.oi.getThrottle();
+    Robot.arm.armMain.set(throttle);
   }
-  public int oof;
-  public ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
-
-
-  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -75,8 +45,8 @@ public class DriveTrainCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-
-    Robot.driveTrain.killMotors();
-
   }
+
+
+
 }

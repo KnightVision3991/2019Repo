@@ -40,8 +40,9 @@ public class DriveTrainCommand extends Command {
   protected void execute() {
 
     //Robot.driveTrain.usePIDOutput(0);
-    
-    NetworkTableEntry big_oof = 
+    double oof = Robot.oi.getThrottle();
+    Robot.driveTrain.manualDrive(oof);
+    /*NetworkTableEntry big_oof = 
             tab.add("oof", 0)
                 .getEntry();
         big_oof.setDouble(oof);
@@ -51,7 +52,7 @@ public class DriveTrainCommand extends Command {
       oof = oof++;
       big_oof.setDouble(oof);
 
-    }
+    }*/
 
   }
   public int oof;

@@ -40,7 +40,7 @@ public class DriveTrainCommand extends Command {
   protected void execute() {
 
     //Robot.driveTrain.usePIDOutput(0);
-    double oof = Robot.oi.getThrottle();
+    double oof = Robot.oi.joystick1.getRawAxis(3);
     Robot.driveTrain.manualDrive(oof);
     /*NetworkTableEntry big_oof = 
             tab.add("oof", 0)

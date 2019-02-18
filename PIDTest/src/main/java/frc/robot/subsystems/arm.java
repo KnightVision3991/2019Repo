@@ -22,8 +22,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static WPI_TalonSRX main = RobotMap.test1;
-  public static WPI_TalonSRX slave = RobotMap.testSlave;
+  public static WPI_TalonSRX test1 = new WPI_TalonSRX(6);
+  public static WPI_TalonSRX testSlave = new WPI_TalonSRX(7);
   public static ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
   public static NetworkTableEntry kP =
     tab.add("P", 0)
@@ -53,19 +53,19 @@ public class arm extends Subsystem {
 
   }
   public static void configPID(double kp, double ki, double kd, double kf){
-    main.config_kP(0, kp);
-    main.config_kI(0, ki);
-    main.config_kD(0, kd);
-    main.config_kF(0, kf);
+    test1.config_kP(0, kp);
+    test1.config_kI(0, ki);
+    test1.config_kD(0, kd);
+    test1.config_kF(0, kf);
   }
   public static void zeroPos(){
-    main.setSelectedSensorPosition(0);
+    test1.setSelectedSensorPosition(0);
   }
   public static void useConfigPID(){
     configPID(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), kF.getDouble(0));
   }
   public static void updatePos(){
-    int pos = main.getSelectedSensorPosition();
+    int pos = test1.getSelectedSensorPosition();
     position.setDouble(pos);
   }
 

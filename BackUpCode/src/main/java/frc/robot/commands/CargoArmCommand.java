@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.CargoArm;
 import frc.robot.Constants;
+import frc.robot.Gains;
 
 public class CargoArmCommand extends Command {
   public CargoArmCommand() {
@@ -35,6 +36,7 @@ public class CargoArmCommand extends Command {
     //Robot.CargoArm.setManualPower(0);
     Robot.CargoArm.setPosition(Robot.CargoArm.position.getDouble(0));
     Robot.CargoArm.updatePos();
+    //Robot.CargoArm.PIDArm(Robot.CargoArm.getArmPos());
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -13,7 +13,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
 import frc.robot.Gains;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.commands.CargoArmCommand;
@@ -27,6 +29,8 @@ public class CargoArm extends Subsystem {
 
   WPI_TalonSRX arm1;
   WPI_TalonSRX arm2;
+  DoubleSolenoid armBrake;
+  int armPos;
   public static ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
   public NetworkTableEntry kP =
     tab.add("P", 0)
@@ -44,7 +48,7 @@ public class CargoArm extends Subsystem {
     tab.add("Set Point", 0)
       .getEntry();
   public NetworkTableEntry position =
-    tab.add("position", 0)
+    tab.add("position", 0).withWidget(BuiltInWidgets.kGraph)
       .getEntry();
 
 
@@ -52,6 +56,8 @@ public class CargoArm extends Subsystem {
   public CargoArm() {
     arm1 = new WPI_TalonSRX(6);
     arm2 = new WPI_TalonSRX(7);
+    armBrake = new DoubleSolenoid(0, 2, 3);
+    addChild("Arm Brake",armBrake);
 
   }
 
@@ -84,6 +90,7 @@ public class CargoArm extends Subsystem {
     arm1.config_kI(0, ki);
     arm1.config_kD(0, kd);
     arm1.config_kF(0, kf);
+    arm2.setInverted(true);
     arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
   public void zeroPos(){
@@ -95,5 +102,52 @@ public class CargoArm extends Subsystem {
   public void updatePos(){
     int pos = arm1.getSelectedSensorPosition();
     position.setDouble(pos);
+  }
+  public int getArmPos(){
+    return armPos;
+  }
+  public void setArmPos(int bigoof){
+    armPos = bigoof;
+  }
+  public void PIDArm(int oof){
+    arm2.follow(arm1);
+    switch(oof){
+      case 0 :
+          //set wanted position
+          arm1.set(ControlMode.Position, Constants.armPos0);
+          //apply brake when within tolerance of position
+          while(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+              armBrake.set(DoubleSolenoid.Value.kForward);
+          }
+          //release brake when not within tolerance of postition
+          while(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+              armBrake.set(DoubleSolenoid.Value.kReverse);
+          }
+      case 1 :
+          arm1.set(ControlMode.Position, Constants.armPos1);
+          while(Math.abs(Constants.armPos1 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+              armBrake.set(DoubleSolenoid.Value.kForward);
+          }
+          while(Math.abs(Constants.armPos1 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+              armBrake.set(DoubleSolenoid.Value.kReverse);
+          }
+      case 2 :
+          arm1.set(ControlMode.Position, Constants.armPos2);
+          while(Math.abs(Constants.armPos2 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+              armBrake.set(DoubleSolenoid.Value.kForward);
+          }
+          while(Math.abs(Constants.armPos2 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+              armBrake.set(DoubleSolenoid.Value.kReverse);
+          }
+      case 3 :
+          arm1.set(ControlMode.Position, Constants.armPos3);
+          while(Math.abs(Constants.armPos3 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+              armBrake.set(DoubleSolenoid.Value.kForward);
+          }
+          while(Math.abs(Constants.armPos3 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+              armBrake.set(DoubleSolenoid.Value.kReverse);
+          }
+
+  }
   }
 }

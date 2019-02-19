@@ -57,7 +57,7 @@ public class CargoArm extends Subsystem {
   public CargoArm() {
     arm1 = new WPI_TalonSRX(6);
     arm2 = new WPI_TalonSRX(7);
-    //armBrake = new DoubleSolenoid(0, 2, 3);
+    armBrake = new DoubleSolenoid(2, 3);
 
   }
 

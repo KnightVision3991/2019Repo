@@ -22,7 +22,7 @@ public class configPID extends InstantCommand {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.arm);
+    requires(Robot.m_arm);
   }
 
   // Called once when the command executes

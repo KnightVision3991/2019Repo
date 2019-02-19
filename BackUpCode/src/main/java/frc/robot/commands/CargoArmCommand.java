@@ -6,23 +6,34 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-import frc.robot.Robot;
+
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Command;
-public class driveTrainCommand extends Command {
-  public driveTrainCommand() {
+import frc.robot.Robot;
+import frc.robot.subsystems.CargoArm;
+import frc.robot.Constants;
+
+public class CargoArmCommand extends Command {
+  public CargoArmCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.driveTrain);
+    requires(Robot.CargoArm);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //Robot.CargoArm.init(Constants.armGains);
+    //CargoArm.useConfigPID();
+    //CargoArm.arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.arcadeDrive(Robot.m_oi.joystick1.getRawAxis(3) - Robot.m_oi.joystick1.getRawAxis(2), Robot.m_oi.joystick1.getRawAxis(0));
+    Robot.CargoArm.setManualPower(0);
+    //Robot.CargoArm.setPosition(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

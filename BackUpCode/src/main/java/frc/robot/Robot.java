@@ -12,7 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.CargoIntakeIn;
 import frc.robot.commands.driveTrainCommand;
+import frc.robot.subsystems.CargoArm;
+import frc.robot.subsystems.CargoIntake;
 import frc.robot.subsystems.driveTrain;
 
 
@@ -27,6 +30,9 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   public static driveTrain driveTrain = new driveTrain();
+  public static CargoIntake cargoIntake = new CargoIntake();
+  public static CargoArm CargoArm = new CargoArm();
+
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -38,6 +44,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new driveTrainCommand());
+    m_chooser.setDefaultOption("Default CargoIntake", new CargoIntakeIn());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

@@ -7,25 +7,26 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.networktables.NetworkTable;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import frc.robot.Constants;
+import frc.robot.Gains;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import frc.robot.RobotMap;
-import frc.robot.commands.*;
-
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import frc.robot.commands.CargoArmCommand;
 
 /**
  * Add your docs here.
  */
-public class arm extends Subsystem {
+public class CargoArm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static WPI_TalonSRX test1 = new WPI_TalonSRX(6);
-  public static WPI_TalonSRX testSlave = new WPI_TalonSRX(7);
+
+  WPI_TalonSRX arm1;
+  WPI_TalonSRX arm2;
   public static ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
   public static NetworkTableEntry kP =
     tab.add("P", 0)
@@ -45,33 +46,54 @@ public class arm extends Subsystem {
   public static NetworkTableEntry position =
     tab.add("position", 0)
       .getEntry();
-  
+
+
+
+  public CargoArm() {
+    arm1 = new WPI_TalonSRX(6);
+    arm2 = new WPI_TalonSRX(7);
+
+  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new realMoveArm());
+    setDefaultCommand(new CargoArmCommand());
+  }
+
+  public void setManualPower(double percent) {
+    arm1.set(percent);
+    arm2.set(-percent);
 
   }
-  public static void configPID(double kp, double ki, double kd, double kf){
-    test1.config_kP(0, kp);
-    test1.config_kI(0, ki);
-    test1.config_kD(0, kd);
-    test1.config_kF(0, kf);
-    test1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+  public void init(Gains oof){
+    arm1.config_kP(0, oof.kP);
+    arm1.config_kI(0, oof.kI);
+    arm1.config_kD(0, oof.kD);
+    arm1.config_kF(0, oof.kF);
+    arm2.setInverted(true);
+    arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
-  public static void zeroPos(){
-    test1.setSelectedSensorPosition(0);
+  public void setPosition(double oof){
+    arm1.set(ControlMode.Position, oof);
+    arm2.follow(arm1);
   }
-  public static void useConfigPID(){
+  public void configPID(double kp, double ki, double kd, double kf){
+    arm1.config_kP(0, kp);
+    arm1.config_kI(0, ki);
+    arm1.config_kD(0, kd);
+    arm1.config_kF(0, kf);
+    arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+  }
+  public void zeroPos(){
+    arm1.setSelectedSensorPosition(0);
+  }
+  public void useConfigPID(){
     configPID(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), kF.getDouble(0));
   }
-  public static void updatePos(){
-    int pos = test1.getSelectedSensorPosition();
+  public void updatePos(){
+    int pos = arm1.getSelectedSensorPosition();
     position.setDouble(pos);
   }
-
-
-  
 }

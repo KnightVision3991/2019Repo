@@ -59,7 +59,7 @@ public class driveTrain extends Subsystem {
       double leftPow = throttle + rot;
       double rightPow = throttle - rot; 
 
-      left1.set(ControlMode.PercentOutput, leftPow);
+      left1.set(ControlMode.PercentOutput, -leftPow);
       right1.set(ControlMode.PercentOutput, rightPow);
 
   }

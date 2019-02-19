@@ -5,30 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
-
-import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.Robot;
-import frc.robot.subsystems.*;
+package frc.robot;
 
 /**
  * Add your docs here.
  */
-public class zeroPos extends InstantCommand {
-  /**
-   * Add your docs here.
-   */
-  public zeroPos() {
-    super();
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.m_arm);
-  }
-
-  // Called once when the command executes
-  @Override
-  protected void initialize() {
-    arm.zeroPos();
-  }
+public class Gains {
+    public final double kP;
+        public final double kI;
+        public final double kD;
+        public final double kF;
+        public final int kIzone;
+        public final double kPeakOutput;
+        
+        public Gains(double _kP, double _kI, double _kD, double _kF, int _kIzone, double _kPeakOutput){
+            kP = _kP;
+            kI = _kI;
+            kD = _kD;
+            kF = _kF;
+            kIzone = _kIzone;
+            kPeakOutput = _kPeakOutput;
+        }
 
 }

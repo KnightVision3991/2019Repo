@@ -6,12 +6,17 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
-public class driveTrainCommand extends Command {
-  public driveTrainCommand() {
+import frc.robot.subsystems.CargoIntake;
+
+public class CargoIntakeOut extends Command {
+  public CargoIntakeOut() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.driveTrain);
+    // eg. requires(chassis);
+    requires(Robot.cargoIntake);
+
   }
 
   // Called just before this Command runs the first time
@@ -22,12 +27,16 @@ public class driveTrainCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.arcadeDrive(Robot.m_oi.joystick1.getRawAxis(3) - Robot.m_oi.joystick1.getRawAxis(2), Robot.m_oi.joystick1.getRawAxis(0));
+    Robot.cargoIntake.power = -1;
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    if(Robot.cargoIntake.power == -1) {
+      return true;
+    }
     return false;
   }
 

@@ -18,7 +18,7 @@ public class moveArm extends Command {
   public moveArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.arm);
+    requires(Robot.m_arm);
   }
 
   // Called just before this Command runs the first time

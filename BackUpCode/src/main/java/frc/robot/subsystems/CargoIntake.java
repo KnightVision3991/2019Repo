@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.CargoIntakeCommand;
@@ -25,11 +26,11 @@ public class CargoIntake extends Subsystem {
 
   public WPI_VictorSPX intakeMotor;
   public double power = 0;
-  public double initialVoltage;
-
+  public DigitalInput limitSwitch;
 
   public CargoIntake() {
     intakeMotor = new WPI_VictorSPX(8);
+    limitSwitch = new DigitalInput(0);
   }
 
   @Override

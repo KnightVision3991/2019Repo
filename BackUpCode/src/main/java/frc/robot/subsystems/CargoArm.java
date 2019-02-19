@@ -28,22 +28,22 @@ public class CargoArm extends Subsystem {
   WPI_TalonSRX arm1;
   WPI_TalonSRX arm2;
   public static ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
-  public static NetworkTableEntry kP =
+  public NetworkTableEntry kP =
     tab.add("P", 0)
       .getEntry();
-  public static NetworkTableEntry kI =
+  public NetworkTableEntry kI =
     tab.add("I", 0)
       .getEntry();
-  public static NetworkTableEntry kD =
+  public NetworkTableEntry kD =
     tab.add("D", 0)
       .getEntry();
-  public static NetworkTableEntry kF =
+  public NetworkTableEntry kF =
     tab.add("F", 0)
       .getEntry();
-  public static NetworkTableEntry setPoint =
+  public NetworkTableEntry setPoint =
     tab.add("Set Point", 0)
       .getEntry();
-  public static NetworkTableEntry position =
+  public NetworkTableEntry position =
     tab.add("position", 0)
       .getEntry();
 

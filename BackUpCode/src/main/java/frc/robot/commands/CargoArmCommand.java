@@ -25,15 +25,16 @@ public class CargoArmCommand extends Command {
   @Override
   protected void initialize() {
     //Robot.CargoArm.init(Constants.armGains);
-    //CargoArm.useConfigPID();
-    //CargoArm.arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    Robot.CargoArm.useConfigPID();
+    //Robot.CargoArm.arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.CargoArm.setManualPower(0);
-    //Robot.CargoArm.setPosition(0);
+    //Robot.CargoArm.setManualPower(0);
+    Robot.CargoArm.setPosition(Robot.CargoArm.position.getDouble(0));
+    Robot.CargoArm.updatePos();
   }
 
   // Make this return true when this Command no longer needs to run execute()

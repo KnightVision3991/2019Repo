@@ -25,6 +25,11 @@ public class OI {
   public JoystickButton A = new JoystickButton(joystick1, 1);
   public JoystickButton B = new JoystickButton(joystick1, 2);
   public JoystickButton X = new JoystickButton(joystick1, 3);
+  public JoystickButton Y = new JoystickButton(joystick1, 4);
+  public JoystickButton LB = new JoystickButton(joystick1, 5);
+  public JoystickButton RB = new JoystickButton(joystick1, 6);
+  public JoystickButton STRT = new JoystickButton(joystick1, 7);
+  public JoystickButton BACK = new JoystickButton(joystick1, 8);
   public POVButton up = new POVButton(joystick1, 0);
   public POVButton right = new POVButton(joystick1, 90);
   public POVButton down = new POVButton(joystick1, 180);
@@ -68,6 +73,11 @@ public class OI {
     down.whenPressed(new armToIntake());
     right.whenPressed(new armToOuttakeFront());
     left.whenPressed(new armToOuttakeBack());
+    RB.whenPressed(new shiftUp());
+    LB.whenPressed(new shiftDown());
+    STRT.whenPressed(new hatchIntakeExtend());
+    BACK.whenPressed(new HatchIntakeRetract());
+
     ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
       //tab.add("Config PID", new configPID());
       tab.add("Zero Position", new zeroPos());
@@ -78,6 +88,10 @@ public class OI {
       tab.add("Intake In", new CargoIntakeIn());
       tab.add("Intake Out", new CargoIntakeOut());
       tab.add("Intake Off", new CargoIntakeOff());
+      tab.add("Shift Up", new shiftUp());
+      tab.add("Shift Down", new shiftDown());
+      tab.add("Hatch Extend", new hatchIntakeExtend());
+      tab.add("Hatch Retract", new HatchIntakeRetract());
 
 
   }

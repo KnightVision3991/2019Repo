@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
 import frc.robot.Gains;
@@ -78,7 +79,7 @@ public class CargoArm extends Subsystem {
     arm1.config_kI(0, oof.kI);
     arm1.config_kD(0, oof.kD);
     arm1.config_kF(0, oof.kF);
-    arm2.setInverted(true);
+    arm2.setInverted(InvertType.OpposeMaster);
     arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
   public void setPosition(double oof){

@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -33,6 +34,8 @@ public class CargoIntake extends Subsystem {
   public CargoIntake() {
     intakeMotor = new WPI_VictorSPX(8);
     limitSwitch = new DigitalInput(0);
+
+    intakeMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override

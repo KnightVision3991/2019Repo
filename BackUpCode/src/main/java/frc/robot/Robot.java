@@ -16,6 +16,7 @@ import frc.robot.commands.CargoIntakeIn;
 import frc.robot.commands.driveTrainCommand;
 import frc.robot.subsystems.CargoArm;
 import frc.robot.subsystems.CargoIntake;
+import frc.robot.subsystems.HatchIntake;
 import frc.robot.subsystems.driveTrain;
 
 
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
   public static driveTrain driveTrain = new driveTrain();
   public static CargoIntake cargoIntake = new CargoIntake();
   public static CargoArm CargoArm = new CargoArm();
+  public static HatchIntake hatchintake = new HatchIntake();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

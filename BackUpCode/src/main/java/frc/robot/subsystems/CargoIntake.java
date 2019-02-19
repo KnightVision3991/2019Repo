@@ -49,7 +49,6 @@ public class CargoIntake extends Subsystem {
   public void usePower() {
 
     intakeMotor.set(ControlMode.PercentOutput, power);
-    SmartDashboard.putNumber("Motor Output", intakeMotor.getMotorOutputVoltage());
 
     
 

@@ -27,19 +27,17 @@ public class shiftDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.driveTrain.leftShift.get() == Value.kOff || Robot.driveTrain.leftShift.get() == Value.kForward) {
-      Robot.driveTrain.leftShift.set(Value.kReverse);
+    if(Robot.driveTrain.shift.get() == Value.kOff || Robot.driveTrain.shift.get() == Value.kReverse) {
+      Robot.driveTrain.shift.set(Value.kForward);
     }
 
-    if(Robot.driveTrain.rightShift.get() == Value.kOff || Robot.driveTrain.rightShift.get() == Value.kForward) {
-      Robot.driveTrain.rightShift.set(Value.kReverse);
-    }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.driveTrain.leftShift.get() == Value.kReverse && Robot.driveTrain.rightShift.get() == Value.kReverse) {
+    if(Robot.driveTrain.shift.get() == Value.kForward) {
       return true;
     }
     return false;

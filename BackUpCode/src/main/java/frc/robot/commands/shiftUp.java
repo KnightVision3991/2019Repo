@@ -26,13 +26,11 @@ public class shiftUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.driveTrain.leftShift.get() == Value.kOff || Robot.driveTrain.leftShift.get() == Value.kReverse) {
-      Robot.driveTrain.leftShift.set(Value.kForward);
+    if(Robot.driveTrain.shift.get() == Value.kOff || Robot.driveTrain.shift.get() == Value.kForward) {
+      Robot.driveTrain.shift.set(Value.kReverse);
     }
 
-    if(Robot.driveTrain.rightShift.get() == Value.kOff || Robot.driveTrain.rightShift.get() == Value.kReverse) {
-      Robot.driveTrain.rightShift.set(Value.kForward);
-    }
+    
 
 
   }
@@ -40,7 +38,7 @@ public class shiftUp extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.driveTrain.leftShift.get() == Value.kForward && Robot.driveTrain.rightShift.get() == Value.kForward) {
+    if(Robot.driveTrain.shift.get() == Value.kReverse) {
       return true;
     }
     return false;

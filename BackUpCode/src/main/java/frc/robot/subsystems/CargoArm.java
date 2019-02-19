@@ -150,4 +150,22 @@ public class CargoArm extends Subsystem {
 
   }
   }
+
+  
+  public void MotionMagicArm(double value) {
+    //map joystick value to 0,1 rather than -1, 1
+    double mappedValue = (value/2) + 0.5;
+    arm1.set(ControlMode.MotionMagic, .33 * mappedValue);
+
+
+    while(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+      armBrake.set(DoubleSolenoid.Value.kForward);
+    }
+  //release brake when not within tolerance of postition
+    while(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+      armBrake.set(DoubleSolenoid.Value.kReverse);
+    }
+
+  }
+
 }

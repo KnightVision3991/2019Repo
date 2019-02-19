@@ -27,10 +27,10 @@ public class CargoIntakeCommand extends Command {
   @Override
   protected void execute() {
 
-    if(Robot.cargoIntake.limitSwitch.get()) {
+    if(Robot.cargoIntake.limitSwitch.get() && !Robot.cargoIntake.isOff) {
       new CargoIntakeOff();
     }
-    
+
     Robot.cargoIntake.usePower();
     
 

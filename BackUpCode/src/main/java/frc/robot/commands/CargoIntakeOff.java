@@ -33,6 +33,7 @@ public class CargoIntakeOff extends Command {
       Robot.cargoIntake.power = 1;
     }*/
     Robot.cargoIntake.power = 0;
+    Robot.cargoIntake.isOff = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()

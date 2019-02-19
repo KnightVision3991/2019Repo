@@ -8,7 +8,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.commands.*;
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,6 +25,11 @@ public class OI {
   public JoystickButton A = new JoystickButton(joystick1, 1);
   public JoystickButton B = new JoystickButton(joystick1, 2);
   public JoystickButton X = new JoystickButton(joystick1, 3);
+  public POVButton up = new POVButton(joystick1, 0);
+  public POVButton right = new POVButton(joystick1, 90);
+  public POVButton down = new POVButton(joystick1, 180);
+  public POVButton left = new POVButton(joystick1, 270);
+
 
   
   //// CREATING BUTTONS
@@ -55,6 +64,20 @@ public class OI {
     X.whenPressed(new CargoIntakeOut());
     A.whenPressed(new CargoIntakeIn());
     B.whenPressed(new CargoIntakeOff());
+    up.whenPressed(new armToDefence());
+    down.whenPressed(new armToIntake());
+    right.whenPressed(new armToOuttakeFront());
+    left.whenPressed(new armToOuttakeBack());
+    ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
+      //tab.add("Config PID", new configPID());
+      tab.add("Zero Position", new zeroPos());
+      tab.add("Arm Intake", new armToIntake());
+      tab.add("Arm Outtake Front", new armToOuttakeFront());
+      tab.add("Arm Defence", new armToDefence());
+      tab.add("Arm Outtake Back", new armToOuttakeBack());
+      tab.add("Intake In", new CargoIntakeIn());
+      tab.add("Intake Out", new CargoIntakeOut());
+      tab.add("Intake Off", new CargoIntakeOff());
 
 
   }

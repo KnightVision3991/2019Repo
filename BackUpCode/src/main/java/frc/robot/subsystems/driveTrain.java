@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.driveTrainCommand;
 
@@ -32,7 +34,8 @@ public class driveTrain extends Subsystem {
   WPI_TalonSRX left2;
   WPI_TalonSRX left3;
 
-
+  public DoubleSolenoid leftShift;
+  public DoubleSolenoid rightShift;
 
   public driveTrain() {
     left1 = new WPI_TalonSRX(0);
@@ -42,6 +45,13 @@ public class driveTrain extends Subsystem {
     right1 = new WPI_TalonSRX(3);
     right2 = new WPI_TalonSRX(4);
     right3 = new WPI_TalonSRX(5);
+
+    leftShift = new DoubleSolenoid(0, 1); //Due to change
+    rightShift = new DoubleSolenoid(2, 3); //Due to change
+
+    leftShift.set(Value.kOff);
+    rightShift.set(Value.kOff);
+
 
     left2.set(ControlMode.Follower, 0);
     left3.set(ControlMode.Follower, 0);
@@ -89,6 +99,12 @@ public class driveTrain extends Subsystem {
     left1.set(ControlMode.Velocity, leftPow);
     right1.set(ControlMode.Velocity, rightPow);
 
+    left2.set(ControlMode.Follower, 0);
+    left3.set(ControlMode.Follower, 0);
+
+
+    right2.set(ControlMode.Follower, 3);
+    right3.set(ControlMode.Follower, 3);
 
   }
 

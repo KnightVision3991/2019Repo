@@ -26,15 +26,17 @@ public class CargoIntakeIn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.cargoIntake.isOff = false;
-
-    Robot.cargoIntake.power = 1;
+    if(Robot.cargoIntake.isLoaded == false) {
+      Robot.cargoIntake.isOff = false;
+      Robot.cargoIntake.power = 1;
+    }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.cargoIntake.power == 1) {
+    if(Robot.cargoIntake.power == 1 || Robot.cargoIntake.isLoaded == true) {
       return true;
     }
     return false;

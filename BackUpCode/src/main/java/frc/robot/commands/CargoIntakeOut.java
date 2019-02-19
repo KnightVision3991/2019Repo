@@ -28,6 +28,7 @@ public class CargoIntakeOut extends Command {
   @Override
   protected void execute() {
     Robot.cargoIntake.isOff = true;
+    Robot.cargoIntake.isLoaded = false;
     Robot.cargoIntake.power = -1;
 
   }

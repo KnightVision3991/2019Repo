@@ -28,7 +28,9 @@ public class CargoIntakeCommand extends Command {
   protected void execute() {
 
     if(Robot.cargoIntake.limitSwitch.get() && !Robot.cargoIntake.isOff) {
+      Robot.cargoIntake.isLoaded = true;
       new CargoIntakeOff();
+
     }
 
     Robot.cargoIntake.usePower();

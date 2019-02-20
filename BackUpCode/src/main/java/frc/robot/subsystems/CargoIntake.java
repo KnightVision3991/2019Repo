@@ -28,8 +28,7 @@ public class CargoIntake extends Subsystem {
   public WPI_VictorSPX intakeMotor;
   public double power = 0;
   public DigitalInput limitSwitch;
-  public boolean isOff;
-  public boolean isLoaded;
+  public boolean isLoaded = false;
 
   public CargoIntake() {
     intakeMotor = new WPI_VictorSPX(8);

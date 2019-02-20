@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.driveTrainCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -83,18 +84,23 @@ public class driveTrain extends Subsystem {
       right2.set(ControlMode.Follower, 3);
       right3.set(ControlMode.Follower, 3);
 
+
+      SmartDashboard.putNumber("Left Encoder Value", left1.getSelectedSensorVelocity());
+      SmartDashboard.putNumber("Right Encoder Value", right1.getSelectedSensorVelocity());
+
+
   }
 
   public void arcadeDrivePID(double throttle, double rot) {
     double leftPow = throttle + rot;
     double rightPow = throttle - rot; 
-    leftPow *= -1;
+    //leftPow *= -1;
 
-    leftPow *= 500 * 4096 / 600;
-    rightPow *= 500 * 4096 / 600;
+    //leftPow *= 500 * 4096 / 600;
+    //rightPow *= 500 * 4096 / 600;
 
-    left1.set(ControlMode.Velocity, leftPow);
-    right1.set(ControlMode.Velocity, rightPow);
+    left1.set(ControlMode.Velocity, 22000 * -leftPow);
+    right1.set(ControlMode.Velocity, 22000 * rightPow);
 
     left2.set(ControlMode.Follower, 0);
     left3.set(ControlMode.Follower, 0);
@@ -108,7 +114,7 @@ public class driveTrain extends Subsystem {
 
   public void setMotorGains(WPI_TalonSRX motor, Gains gains, boolean sensorPhase) {
     motor.configFactoryDefault();
-    motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
     
 
     motor.setSensorPhase(sensorPhase);

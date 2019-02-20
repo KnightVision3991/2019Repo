@@ -34,7 +34,9 @@ public class CargoArmCommand extends Command {
   @Override
   protected void execute() {
     //Robot.CargoArm.setManualPower(0);
-    Robot.CargoArm.setPosition(Robot.CargoArm.position.getDouble(0));
+    //Robot.CargoArm.MotionMagicArm(Robot.m_oi.joystick1.getRawAxis(5));
+    Robot.CargoArm.MotionMagicArm(Robot.CargoArm.setPoint.getDouble(0));
+    //Robot.CargoArm.setManualPower(Robot.m_oi.joystick1.getRawAxis(5));
     Robot.CargoArm.updatePos();
     //Robot.CargoArm.PIDArm(Robot.CargoArm.getArmPos());
   }

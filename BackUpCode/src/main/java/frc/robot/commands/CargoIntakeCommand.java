@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class CargoIntakeCommand extends Command {
@@ -27,11 +28,10 @@ public class CargoIntakeCommand extends Command {
   @Override
   protected void execute() {
 
-    if(Robot.cargoIntake.limitSwitch.get() && !Robot.cargoIntake.isOff) {
-      Robot.cargoIntake.isLoaded = true;
-      new CargoIntakeOff();
+    
 
-    }
+    SmartDashboard.putBoolean("Limit Switch", Robot.cargoIntake.limitSwitch.get());
+    
 
     Robot.cargoIntake.usePower();
     

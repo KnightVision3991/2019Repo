@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
 import frc.robot.Gains;
@@ -51,13 +52,23 @@ public class CargoArm extends Subsystem {
   public NetworkTableEntry position =
     tab.add("position", 0).withWidget(BuiltInWidgets.kGraph)
       .getEntry();
+  public NetworkTableEntry error =
+    tab.add("error", 0)
+      .getEntry();
 
 
 
   public CargoArm() {
     arm1 = new WPI_TalonSRX(6);
     arm2 = new WPI_TalonSRX(7);
-    armBrake = new DoubleSolenoid(2, 3);
+    armBrake = new DoubleSolenoid(2, 6);
+    //arm1.setInverted(true);
+    //arm2.setInverted(true);
+    arm1.setNeutralMode(NeutralMode.Brake);
+    arm2.setNeutralMode(NeutralMode.Brake);
+
+    configPID(1, .1, 0, 0);
+
 
   }
 
@@ -70,7 +81,7 @@ public class CargoArm extends Subsystem {
 
   public void setManualPower(double percent) {
     arm1.set(percent);
-    arm2.set(-percent);
+    arm2.set(percent);
 
   }
   public void init(Gains oof){
@@ -102,6 +113,7 @@ public class CargoArm extends Subsystem {
   public void updatePos(){
     int pos = arm1.getSelectedSensorPosition();
     position.setDouble(pos);
+    //error.setDouble(arm1.getIntegralAccumulator());
   }
   public int getArmPos(){
     return armPos;
@@ -116,55 +128,61 @@ public class CargoArm extends Subsystem {
           //set wanted position
           arm1.set(ControlMode.Position, Constants.armPos0);
           //apply brake when within tolerance of position
-          while(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+          if(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
               armBrake.set(DoubleSolenoid.Value.kForward);
           }
           //release brake when not within tolerance of postition
-          while(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+          if(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
               armBrake.set(DoubleSolenoid.Value.kReverse);
           }
       case 1 :
           arm1.set(ControlMode.Position, Constants.armPos1);
-          while(Math.abs(Constants.armPos1 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+          if(Math.abs(Constants.armPos1 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
               armBrake.set(DoubleSolenoid.Value.kForward);
           }
-          while(Math.abs(Constants.armPos1 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+          if(Math.abs(Constants.armPos1 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
               armBrake.set(DoubleSolenoid.Value.kReverse);
           }
       case 2 :
           arm1.set(ControlMode.Position, Constants.armPos2);
-          while(Math.abs(Constants.armPos2 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+          if(Math.abs(Constants.armPos2 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
               armBrake.set(DoubleSolenoid.Value.kForward);
           }
-          while(Math.abs(Constants.armPos2 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+          if(Math.abs(Constants.armPos2 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
               armBrake.set(DoubleSolenoid.Value.kReverse);
           }
       case 3 :
           arm1.set(ControlMode.Position, Constants.armPos3);
-          while(Math.abs(Constants.armPos3 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+          if(Math.abs(Constants.armPos3 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
               armBrake.set(DoubleSolenoid.Value.kForward);
           }
-          while(Math.abs(Constants.armPos3 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+          if(Math.abs(Constants.armPos3 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
               armBrake.set(DoubleSolenoid.Value.kReverse);
           }
 
   }
   }
 
-  
+
   public void MotionMagicArm(double value) {
     //map joystick value to 0,1 rather than -1, 1
-    double mappedValue = (value/2) + 0.5;
-    arm1.set(ControlMode.MotionMagic, .33 * mappedValue);
+    /*double mappedValue = (value/2) + 0.5;
+    arm1.set(ControlMode.Position, -200 * 1);
+    arm2.follow(arm1);*/
 
 
-    while(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
-      armBrake.set(DoubleSolenoid.Value.kForward);
+    if(Math.abs(-value - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+      //armBrake.set(DoubleSolenoid.Value.kReverse);
+      arm1.set(0);
     }
   //release brake when not within tolerance of postition
-    while(Math.abs(Constants.armPos0 - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
-      armBrake.set(DoubleSolenoid.Value.kReverse);
+    if(Math.abs(-value - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+      //armBrake.set(DoubleSolenoid.Value.kForward);
+      double mappedValue = Math.abs(value);
+      arm1.set(ControlMode.Position, -value);
+      arm2.follow(arm1);
     }
+
 
   }
 

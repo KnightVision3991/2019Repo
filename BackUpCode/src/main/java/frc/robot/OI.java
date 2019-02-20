@@ -7,12 +7,14 @@
 
 package frc.robot;
 
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.*;
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -35,6 +37,19 @@ public class OI {
   public POVButton down = new POVButton(joystick1, 180);
   public POVButton left = new POVButton(joystick1, 270);
 
+
+  public Button limitSwitch = new Button(){
+  
+    @Override
+    public boolean get() {
+      if(!Robot.cargoIntake.limitSwitch.get()) {
+        return true;
+      } else {
+        return false;
+
+      }
+    }
+  };
 
   
   //// CREATING BUTTONS
@@ -77,9 +92,10 @@ public class OI {
     LB.whenPressed(new shiftDown());
     STRT.whenPressed(new hatchIntakeExtend());
     BACK.whenPressed(new HatchIntakeRetract());
+    limitSwitch.whenPressed(new CargoIntakeOff());
 
     ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
-      //tab.add("Config PID", new configPID());
+      tab.add("Config PID", new PIDConfig());
       tab.add("Zero Position", new zeroPos());
       tab.add("Arm Intake", new armToIntake());
       tab.add("Arm Outtake Front", new armToOuttakeFront());

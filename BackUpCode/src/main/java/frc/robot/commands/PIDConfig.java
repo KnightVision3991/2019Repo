@@ -5,19 +5,29 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.commands;
+
+import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.Robot;
 
 /**
  * Add your docs here.
  */
-public class Constants {
-    public static final int armPos0 = 0;
-    public static final int armPos1 = 200;
-    public static final int armPos2 = 400;
-    public static final int armPos3 = 600;
-    public static final int armTolerance = 20;
-    public static final Gains armGains = new Gains(1, 0, 0, 0, 0, 1);
-    public static final Gains leftDriveGains = new Gains(0.25, 0.00, 0, 1023/7200, 300, 1);
-    public static final Gains rightDriveGains = new Gains(0.25, 0.00, 0, 1023/7200, 300, 1);
+public class PIDConfig extends InstantCommand {
+  /**
+   * Add your docs here.
+   */
+  public PIDConfig() {
+    super();
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(Robot.CargoArm);
+  }
+
+  // Called once when the command executes
+  @Override
+  protected void initialize() {
+    Robot.CargoArm.useConfigPID();
+  }
 
 }

@@ -8,6 +8,8 @@
 package frc.robot;
 
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -36,6 +38,7 @@ public class OI {
   public POVButton right = new POVButton(joystick1, 90);
   public POVButton down = new POVButton(joystick1, 180);
   public POVButton left = new POVButton(joystick1, 270);
+  public NetworkTable table;
 
 
   public Button limitSwitch = new Button(){
@@ -93,6 +96,7 @@ public class OI {
     STRT.whenPressed(new hatchIntakeExtend());
     BACK.whenPressed(new HatchIntakeRetract());
     limitSwitch.whenPressed(new CargoIntakeOff());
+    table = NetworkTableInstance.getDefault().getTable("limelight");
 
     ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
       tab.add("Config PID", new PIDConfig());

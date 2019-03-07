@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -184,6 +185,10 @@ public class CargoArm extends Subsystem {
     }
 
 
+  }
+  public void fArmControl(double oof){
+    double ff = .42*Math.cos(arm1.getSelectedSensorPosition()*Math.PI*2/1000);
+    arm1.set(ControlMode.Position, oof, DemandType.ArbitraryFeedForward, ff);
   }
 
 }

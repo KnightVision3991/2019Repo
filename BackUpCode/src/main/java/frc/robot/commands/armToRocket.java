@@ -7,27 +7,27 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.hal.sim.mockdata.RoboRioDataJNI;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
  * Add your docs here.
  */
-public class armToOuttakeFront extends InstantCommand {
+public class armToRocket extends InstantCommand {
   /**
    * Add your docs here.
    */
-  public armToOuttakeFront() {
+  public armToRocket() {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.CargoArm);
   }
 
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.CargoArm.setPos(150);
+    Robot.CargoArm.setPos(110);
     Robot.CargoArm.clearPID();
   }
 

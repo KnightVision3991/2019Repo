@@ -35,11 +35,15 @@ public class CargoArmCommand extends Command {
   protected void execute() {
     //Robot.CargoArm.setManualPower(0);
     //Robot.CargoArm.MotionMagicArm(Robot.m_oi.joystick1.getRawAxis(5));
-    Robot.CargoArm.MotionMagicArm(Robot.CargoArm.setPoint.getDouble(0));
-    //Robot.CargoArm.fArmControl(Robot.CargoArm.setPoint.getDouble(0));
-    //Robot.CargoArm.setManualPower(Robot.m_oi.joystick1.getRawAxis(5));
-    Robot.CargoArm.updatePos();
-    //Robot.CargoArm.PIDArm(Robot.CargoArm.getArmPos());
+    //Robot.CargoArm.Motion `agicArm(Robot.CargoArm.setPoint.getDouble(0));
+    if(Robot.m_oi.Y.get()){
+      Robot.CargoArm.setManualPower(Robot.m_oi.joystick2.getRawAxis(5)*Math.abs(Robot.m_oi.joystick2.getRawAxis(5)));
+    }else{
+      Robot.CargoArm.fArmControl(Robot.CargoArm.armPosition());
+      //Robot.CargoArm.setManualPower(Robot.m_oi.joystick1.getRawAxis(5));
+      Robot.CargoArm.updatePos();
+      //Robot.CargoArm.PIDArm(Robot.CargoArm.getArmPos());
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

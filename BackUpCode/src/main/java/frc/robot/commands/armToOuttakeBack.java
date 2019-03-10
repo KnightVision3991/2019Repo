@@ -27,7 +27,8 @@ public class armToOuttakeBack extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.CargoArm.setArmPos(3);
+    Robot.CargoArm.setPos(350);
+    Robot.CargoArm.clearPID();
   }
 
 }

@@ -34,6 +34,7 @@ public class CargoArm extends Subsystem {
   WPI_TalonSRX arm2;
   DoubleSolenoid armBrake;
   int armPos;
+  double armPosition;
   public static ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
   public NetworkTableEntry kP =
     tab.add("P", 0)
@@ -62,7 +63,7 @@ public class CargoArm extends Subsystem {
   public CargoArm() {
     arm1 = new WPI_TalonSRX(6);
     arm2 = new WPI_TalonSRX(7);
-    armBrake = new DoubleSolenoid(2, 6);
+    armBrake = new DoubleSolenoid(6, 2);
     //arm1.setInverted(true);
     //arm2.setInverted(true);
     arm1.setNeutralMode(NeutralMode.Brake);
@@ -109,7 +110,8 @@ public class CargoArm extends Subsystem {
     arm1.setSelectedSensorPosition(0);
   }
   public void useConfigPID(){
-    configPID(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), kF.getDouble(0));
+    //configPID(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), 0);
+    configPID(1.7, .001, 750, 0);
   }
   public void updatePos(){
     int pos = arm1.getSelectedSensorPosition();
@@ -173,12 +175,12 @@ public class CargoArm extends Subsystem {
 
 
     if(Math.abs(-value - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
-      //armBrake.set(DoubleSolenoid.Value.kReverse);
+      armBrake.set(DoubleSolenoid.Value.kReverse);
       arm1.set(0);
     }
   //release brake when not within tolerance of postition
     if(Math.abs(-value - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
-      //armBrake.set(DoubleSolenoid.Value.kForward);
+      armBrake.set(DoubleSolenoid.Value.kForward);
       double mappedValue = Math.abs(value);
       arm1.set(ControlMode.Position, -value);
       arm2.follow(arm1);
@@ -187,8 +189,31 @@ public class CargoArm extends Subsystem {
 
   }
   public void fArmControl(double oof){
-    double ff = .42*Math.cos(arm1.getSelectedSensorPosition()*Math.PI*2/1000);
-    arm1.set(ControlMode.Position, oof, DemandType.ArbitraryFeedForward, ff);
+    double ff = -.131*Math.cos((arm1.getSelectedSensorPosition()*Math.PI*2/1000) - .12);
+    if(Math.abs(-oof - arm1.getSelectedSensorPosition()) > Constants.armTolerance){
+      arm1.set(ControlMode.Position, -oof, DemandType.ArbitraryFeedForward, ff);
+      arm2.follow(arm1);
+      //armBrake.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    if(Math.abs(-oof - arm1.getSelectedSensorPosition()) < Constants.armTolerance){
+      //armBrake.set(DoubleSolenoid.Value.kReverse);
+      arm1.set(ControlMode.Position, -oof, DemandType.ArbitraryFeedForward, ff);
+      arm2.follow(arm1);
+    }
+
+  }
+  public void brakeArm(){
+    armBrake.set(DoubleSolenoid.Value.kReverse);
+  }
+  public void setPos(double oof){
+    armPosition = oof;
+  }
+  public double armPosition(){
+    return armPosition;
+  }
+  public void clearPID(){
+    arm1.setIntegralAccumulator(0);
   }
 
 }

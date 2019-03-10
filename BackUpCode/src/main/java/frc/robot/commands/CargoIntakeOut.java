@@ -27,14 +27,14 @@ public class CargoIntakeOut extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.cargoIntake.power = -1;
+    Robot.cargoIntake.power = -.8;
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.cargoIntake.power == -1) {
+    if(Robot.cargoIntake.power == -.8) {
       return true;
     }
     return false;

@@ -27,7 +27,8 @@ public class armToIntake extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.CargoArm.setArmPos(0);
+    Robot.CargoArm.setPos(0);
+    Robot.CargoArm.clearPID();
   }
 
 }

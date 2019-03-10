@@ -15,7 +15,7 @@ public class Constants {
     public static final int armPos1 = 200;
     public static final int armPos2 = 400;
     public static final int armPos3 = 600;
-    public static final int armTolerance = 20;
+    public static final int armTolerance = 4;
     public static final Gains armGains = new Gains(1, 0, 0, 0, 0, 1);
     public static final Gains leftDriveGains = new Gains(0.25, 0.00, 0, 1023/7200, 300, 1);
     public static final Gains rightDriveGains = new Gains(0.25, 0.00, 0, 1023/7200, 300, 1);

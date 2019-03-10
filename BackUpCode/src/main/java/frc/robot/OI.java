@@ -25,19 +25,20 @@ import frc.robot.commands.*;
 public class OI {
 
   public Joystick joystick1 = new Joystick(0);
+  public Joystick joystick2 = new Joystick(1);
 
-  public JoystickButton A = new JoystickButton(joystick1, 1);
-  public JoystickButton B = new JoystickButton(joystick1, 2);
-  public JoystickButton X = new JoystickButton(joystick1, 3);
-  public JoystickButton Y = new JoystickButton(joystick1, 4);
+  public JoystickButton A = new JoystickButton(joystick2, 1);
+  public JoystickButton B = new JoystickButton(joystick2, 2);
+  public JoystickButton X = new JoystickButton(joystick2, 3);
+  public JoystickButton Y = new JoystickButton(joystick2, 4);
   public JoystickButton LB = new JoystickButton(joystick1, 5);
   public JoystickButton RB = new JoystickButton(joystick1, 6);
   public JoystickButton STRT = new JoystickButton(joystick1, 7);
   public JoystickButton BACK = new JoystickButton(joystick1, 8);
-  public POVButton up = new POVButton(joystick1, 0);
-  public POVButton right = new POVButton(joystick1, 90);
-  public POVButton down = new POVButton(joystick1, 180);
-  public POVButton left = new POVButton(joystick1, 270);
+  public POVButton up = new POVButton(joystick2, 0);
+  public POVButton right = new POVButton(joystick2, 90);
+  public POVButton down = new POVButton(joystick2, 180);
+  public POVButton left = new POVButton(joystick2, 270);
   public NetworkTable table;
 
 
@@ -90,13 +91,15 @@ public class OI {
     up.whenPressed(new armToDefence());
     down.whenPressed(new armToIntake());
     right.whenPressed(new armToOuttakeFront());
-    left.whenPressed(new armToOuttakeBack());
+    left.whenPressed(new armToRocket());
     RB.whenPressed(new shiftUp());
     LB.whenPressed(new shiftDown());
     STRT.whenPressed(new hatchIntakeExtend());
     BACK.whenPressed(new HatchIntakeRetract());
     limitSwitch.whenPressed(new CargoIntakeOff());
     table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);
+
 
     ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
       tab.add("Config PID", new PIDConfig());
@@ -112,6 +115,7 @@ public class OI {
       tab.add("Shift Down", new shiftDown());
       tab.add("Hatch Extend", new hatchIntakeExtend());
       tab.add("Hatch Retract", new HatchIntakeRetract());
+      tab.add("rocket", new armToRocket());
 
 
   }

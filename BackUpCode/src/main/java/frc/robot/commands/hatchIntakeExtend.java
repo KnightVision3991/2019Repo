@@ -28,14 +28,14 @@ public class hatchIntakeExtend extends Command {
   @Override
   protected void execute() {
 
-    Robot.hatchintake.setHatch(Value.kForward);
+    Robot.hatchintake.setHatch(true);
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.hatchintake.hatchIntake.get() == Value.kForward) {
+    if(Robot.hatchintake.hatchIntake.get()) {
       return true;
     }
     return false;

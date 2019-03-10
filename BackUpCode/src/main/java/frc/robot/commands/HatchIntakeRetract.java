@@ -27,14 +27,14 @@ public class HatchIntakeRetract extends Command {
   @Override
   protected void execute() {
 
-    Robot.hatchintake.setHatch(Value.kReverse);
+    Robot.hatchintake.setHatch(false);
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.hatchintake.hatchIntake.get() == Value.kReverse) {
+    if(!Robot.hatchintake.hatchIntake.get()) {
       return true;
     }
     return false;

@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 /**
  * Add your docs here.
@@ -17,11 +18,11 @@ public class HatchIntake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public DoubleSolenoid hatchIntake;
+  public Solenoid hatchIntake;
 
   public HatchIntake() {
-    hatchIntake = new DoubleSolenoid(4,5);
-    hatchIntake.set(Value.kOff);
+    hatchIntake = new Solenoid(3);
+    hatchIntake.set(false);
   }
   @Override
   public void initDefaultCommand() {
@@ -29,7 +30,7 @@ public class HatchIntake extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void setHatch(Value value) {
+  public void setHatch(Boolean value) {
     hatchIntake.set(value);
   }
 

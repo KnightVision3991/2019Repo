@@ -22,7 +22,10 @@ public class driveTrainCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.arcadeDrive(Robot.m_oi.joystick1.getRawAxis(3) - Robot.m_oi.joystick1.getRawAxis(2), Robot.m_oi.joystick1.getRawAxis(0));
+    double throttle = Math.abs(Robot.m_oi.joystick1.getRawAxis(3))*Robot.m_oi.joystick1.getRawAxis(3)*.75 - Math.abs(Robot.m_oi.joystick1.getRawAxis(2))*Robot.m_oi.joystick1.getRawAxis(2)*.75;
+    double rot = Math.abs(Robot.m_oi.joystick1.getRawAxis(0))*Robot.m_oi.joystick1.getRawAxis(0)/2;
+    Robot.driveTrain.arcadeDrive(throttle, rot);
+    //Robot.driveTrain.arcadeDrivePID(Robot.m_oi.joystick1.getRawAxis(3) - Robot.m_oi.joystick1.getRawAxis(2), Robot.m_oi.joystick1.getRawAxis(0));
   }
 
   // Make this return true when this Command no longer needs to run execute()

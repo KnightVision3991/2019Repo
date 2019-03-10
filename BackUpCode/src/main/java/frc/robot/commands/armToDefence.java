@@ -27,7 +27,8 @@ public class armToDefence extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.CargoArm.setArmPos(2);
+    Robot.CargoArm.setPos(250);
+    Robot.CargoArm.clearPID();
   }
 
 }

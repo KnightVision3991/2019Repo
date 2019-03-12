@@ -24,7 +24,8 @@ public class driveTrainCommand extends Command {
   protected void execute() {
     double throttle = Math.abs(Robot.m_oi.joystick1.getRawAxis(3))*Robot.m_oi.joystick1.getRawAxis(3)*.75 - Math.abs(Robot.m_oi.joystick1.getRawAxis(2))*Robot.m_oi.joystick1.getRawAxis(2)*.75;
     double rot = Math.abs(Robot.m_oi.joystick1.getRawAxis(0))*Robot.m_oi.joystick1.getRawAxis(0)/2;
-    Robot.driveTrain.arcadeDrive(throttle, rot);
+    int flip = Robot.driveTrain.getFlip();
+    Robot.driveTrain.arcadeDrive(flip*throttle, flip*rot);
     //Robot.driveTrain.arcadeDrivePID(Robot.m_oi.joystick1.getRawAxis(3) - Robot.m_oi.joystick1.getRawAxis(2), Robot.m_oi.joystick1.getRawAxis(0));
   }
 

@@ -37,6 +37,8 @@ public class driveTrain extends Subsystem {
 
   public DoubleSolenoid shift;
 
+  int driveOof;
+
   public driveTrain() {
     left1 = new WPI_TalonSRX(0);
     left2 = new WPI_TalonSRX(1);
@@ -60,6 +62,8 @@ public class driveTrain extends Subsystem {
 
     setMotorGains(left1, Constants.leftDriveGains, false);
     setMotorGains(right1, Constants.rightDriveGains, false);
+
+    driveOof = 1;
 
   }
 
@@ -131,6 +135,14 @@ public class driveTrain extends Subsystem {
     motor.config_kD(0, gains.kD);
 
 
+  }
+
+  public int getFlip(){
+    return driveOof;
+  }
+  
+  public void flip(){
+    driveOof = driveOof*-1;
   }
 
 }

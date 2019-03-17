@@ -39,6 +39,7 @@ public class OI {
   public JoystickButton B = new JoystickButton(joystick2, 2);
   public JoystickButton X = new JoystickButton(joystick2, 3);
   public JoystickButton Y = new JoystickButton(joystick2, 4);
+  public JoystickButton Y2 = new JoystickButton(joystick1, 4);
   public JoystickButton LB = new JoystickButton(joystick1, 5);
   public JoystickButton RB = new JoystickButton(joystick1, 6);
   public JoystickButton STRT = new JoystickButton(joystick1, 7);
@@ -105,6 +106,7 @@ public class OI {
     STRT.whenPressed(new hatchIntakeExtend());
     BACK.whenPressed(new HatchIntakeRetract());
     limitSwitch.whenPressed(new CargoIntakeOff());
+    Y2.whenPressed(new flipDrive());
     table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);
 

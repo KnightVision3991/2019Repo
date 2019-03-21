@@ -23,6 +23,7 @@ public class Constants {
     //Gains(kp, ki, kd, kf, izone, peak output);
     public static final Gains driveGains = new Gains(0.15, 0.0, 1.0, 0.0, 0, 1.0);
     public static final Gains armGains = new Gains(1, 0, 0, 0, 0, 0);
+    public static final Gains hatchGains = new Gains(1, 0, 0, 0, 0, 0);
     public static final int armPos0 = 0;
     public static final int armPos1 = 200;
     public static final int armPos2 = 400;

@@ -123,6 +123,19 @@ public class driveTrain extends Subsystem{
         driveTrainMotors[4].follow(driveTrainMotors[3]);
         driveTrainMotors[5].follow(driveTrainMotors[3]);
     }
+
+
+    public void PIDDrive(double oof){
+        driveTrainMotors[0].set(ControlMode.Velocity, oof);
+        driveTrainMotors[1].follow(driveTrainMotors[0]);
+        driveTrainMotors[2].follow(driveTrainMotors[0]);
+
+
+        driveTrainMotors[3].set(ControlMode.Velocity, oof);
+        driveTrainMotors[4].follow(driveTrainMotors[3]);
+        driveTrainMotors[5].follow(driveTrainMotors[3]);
+    }
+
     public void initEncoders(){
         driveTrainMotors[0].configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         driveTrainMotors[3].configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);

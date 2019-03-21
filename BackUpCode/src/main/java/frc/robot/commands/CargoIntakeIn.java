@@ -26,7 +26,7 @@ public class CargoIntakeIn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      Robot.cargoIntake.power = .5;
+      Robot.cargoIntake.power = .75;
     
   }
 

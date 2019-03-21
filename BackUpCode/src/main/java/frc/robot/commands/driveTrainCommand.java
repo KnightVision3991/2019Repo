@@ -26,6 +26,12 @@ public class driveTrainCommand extends Command {
     double rot = Math.abs(Robot.m_oi.joystick1.getRawAxis(0))*Robot.m_oi.joystick1.getRawAxis(0)/2;
     int flip = Robot.driveTrain.getFlip();
     Robot.driveTrain.arcadeDrive(flip*throttle, flip*rot);
+    if(flip == 1){
+      Robot.m_oi.table.getEntry("stream").setDouble(2);
+    }
+    if(flip == -1){
+      Robot.m_oi.table.getEntry("stream").setDouble(1);
+    }
     //Robot.driveTrain.arcadeDrivePID(Robot.m_oi.joystick1.getRawAxis(3) - Robot.m_oi.joystick1.getRawAxis(2), Robot.m_oi.joystick1.getRawAxis(0));
   }
 

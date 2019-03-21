@@ -108,7 +108,7 @@ public class OI {
     limitSwitch.whenPressed(new CargoIntakeOff());
     Y2.whenPressed(new flipDrive());
     table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);
 
 
     ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");

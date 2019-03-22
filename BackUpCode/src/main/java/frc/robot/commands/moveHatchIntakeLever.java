@@ -5,17 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc3991.TheActualRealOof.commands;
+package frc.robot.commands;
 
-import org.usfirst.frc3991.TheActualRealOof.Robot;
+import frc.robot.*;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-public class moveHatchIntakeUp extends Command {
-  public moveHatchIntakeUp() {
+import edu.wpi.first.wpilibj.Timer;
+public class moveHatchIntakeLever extends Command {
+  public moveHatchIntakeLever() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.hatchIntake);
+    requires(Robot.hatchintake);
   }
 
   // Called just before this Command runs the first time
@@ -26,8 +26,13 @@ public class moveHatchIntakeUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.hatchIntake.extend();
-    Robot.hatchIntake.position = 0;
+    if(Robot.hatchintake.position == 0) {
+      Robot.hatchintake.position = 2000;
+
+    } else {
+      Robot.hatchintake.position = 0;
+
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

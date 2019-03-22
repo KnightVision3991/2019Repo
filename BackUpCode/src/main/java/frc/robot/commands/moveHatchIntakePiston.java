@@ -7,12 +7,14 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.*;
 
-public class HatchIntakeRetract extends Command {
-  public HatchIntakeRetract() {
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
+public class moveHatchIntakePiston extends Command {
+  public moveHatchIntakePiston() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.hatchintake);
@@ -26,18 +28,19 @@ public class HatchIntakeRetract extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    Robot.hatchintake.setHatch(false);
-
+    
+    if(Robot.hatchintake.hatchExtend.get() == Value.kForward) {
+      Robot.hatchintake.hatchExtend.set(Value.kReverse);
+      
+    } else {
+      Robot.hatchintake.hatchExtend.set(Value.kForward);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(!Robot.hatchintake.hatchIntake.get()) {
-      return true;
-    }
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

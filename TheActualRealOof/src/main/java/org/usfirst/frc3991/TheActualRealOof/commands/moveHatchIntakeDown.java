@@ -27,6 +27,7 @@ public class moveHatchIntakeDown extends Command {
   @Override
   protected void execute() {
     Robot.hatchIntake.position = 500;
+    Robot.hatchIntake.reverse();
   }
 
   // Make this return true when this Command no longer needs to run execute()

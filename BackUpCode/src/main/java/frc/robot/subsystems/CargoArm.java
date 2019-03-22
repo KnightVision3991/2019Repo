@@ -63,7 +63,7 @@ public class CargoArm extends Subsystem {
   public CargoArm() {
     arm1 = new WPI_TalonSRX(6);
     arm2 = new WPI_TalonSRX(7);
-    armBrake = new DoubleSolenoid(6, 2);
+    //armBrake = new DoubleSolenoid(6, 2);
     //arm1.setInverted(true);
     //arm2.setInverted(true);
     arm1.setNeutralMode(NeutralMode.Brake);

@@ -16,6 +16,8 @@
 package frc.robot;
 
 
+import frc.robot.commands.*;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
@@ -103,8 +105,8 @@ public class OI {
     left.whenPressed(new armToRocket());
     RB.whenPressed(new shiftUp());
     LB.whenPressed(new shiftDown());
-    STRT.whenPressed(new hatchIntakeExtend());
-    BACK.whenPressed(new HatchIntakeRetract());
+    STRT.whenPressed(new moveHatchIntakeLever());
+    BACK.whenPressed(new moveHatchIntakePiston());
     limitSwitch.whenPressed(new CargoIntakeOff());
     Y2.whenPressed(new flipDrive());
     table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -123,8 +125,8 @@ public class OI {
       tab.add("Intake Off", new CargoIntakeOff());
       tab.add("Shift Up", new shiftUp());
       tab.add("Shift Down", new shiftDown());
-      tab.add("Hatch Extend", new hatchIntakeExtend());
-      tab.add("Hatch Retract", new HatchIntakeRetract());
+      tab.add("Hatch Up", new moveHatchIntakeLever());
+      tab.add("Hatch Down", new moveHatchIntakePiston());
       tab.add("rocket", new armToRocket());
 
 

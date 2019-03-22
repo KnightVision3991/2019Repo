@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class CargoIntakeIn extends Command {
+  double oof;
   public CargoIntakeIn() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.cargoIntake);
@@ -26,14 +27,16 @@ public class CargoIntakeIn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      Robot.cargoIntake.power = .75;
+
+    oof = .75;
+    Robot.cargoIntake.power = oof;
     
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.cargoIntake.power == .5) {
+    if(Robot.cargoIntake.power == oof) {
       return true;
     }
     return false;

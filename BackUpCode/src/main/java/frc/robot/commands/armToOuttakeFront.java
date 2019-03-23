@@ -28,6 +28,8 @@ public class armToOuttakeFront extends InstantCommand {
   @Override
   protected void initialize() {
     Robot.CargoArm.setPos(150);
+    Robot.CargoArm.armBrake.set(false);
+
     Robot.CargoArm.clearPID();
   }
 

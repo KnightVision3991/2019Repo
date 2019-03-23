@@ -7,14 +7,14 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class CargoIntakeOff extends Command {
-  public CargoIntakeOff() {
+public class brakeArm extends Command {
+  public brakeArm() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.cargoIntake);
+    // eg. requires(chassis);
+    requires(Robot.CargoArm);
   }
 
   // Called just before this Command runs the first time
@@ -25,23 +25,13 @@ public class CargoIntakeOff extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    /*if(Robot.cargoIntake.power == 1) {
-      Robot.cargoIntake.power = -1;
-    }
-
-    if(Robot.cargoIntake.power == -1) {
-      Robot.cargoIntake.power = 1;
-    }*/
-    Robot.cargoIntake.power = 0;
+    Robot.CargoArm.brakeArm();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-
-    if(Robot.cargoIntake.power == 0) {
-      Robot.cargoIntake.power = 0;
+    if(Robot.CargoArm.armBrake.get()){
       return true;
     }
     return false;

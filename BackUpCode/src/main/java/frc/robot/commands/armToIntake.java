@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
@@ -28,6 +29,7 @@ public class armToIntake extends InstantCommand {
   @Override
   protected void initialize() {
     Robot.CargoArm.setPos(0);
+    Robot.CargoArm.armBrake.set(false);
     Robot.CargoArm.clearPID();
   }
 

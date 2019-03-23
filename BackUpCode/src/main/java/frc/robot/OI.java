@@ -99,6 +99,7 @@ public class OI {
     X.whenPressed(new CargoIntakeOut());
     A.whenPressed(new CargoIntakeIn());
     B.whenPressed(new CargoIntakeOff());
+    Y.whileHeld(new brakeArm());
     up.whenPressed(new armToDefence());
     down.whenPressed(new armToIntake());
     right.whenPressed(new armToOuttakeFront());

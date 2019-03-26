@@ -15,6 +15,7 @@ import frc.robot.commands.driveTrainCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.Constants;
@@ -79,14 +80,15 @@ public class driveTrain extends Subsystem {
       double rightPow = throttle - rot; 
 
       left1.set(ControlMode.PercentOutput, -leftPow);
-      right1.set(ControlMode.PercentOutput, rightPow);
-
       left2.set(ControlMode.Follower, 0);
-      left3.set(ControlMode.Follower, 0);
+      left3.set(ControlMode.PercentOutput, 0);
+      left3.setNeutralMode(NeutralMode.Coast);
 
-
+      right1.set(ControlMode.PercentOutput, rightPow);
       right2.set(ControlMode.Follower, 3);
-      right3.set(ControlMode.Follower, 3);
+      right3.set(ControlMode.PercentOutput, 0);
+      right3.setNeutralMode(NeutralMode.Coast);
+
 
 
       SmartDashboard.putNumber("Left Encoder Value", left1.getSelectedSensorVelocity());

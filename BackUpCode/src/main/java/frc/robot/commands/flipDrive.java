@@ -10,20 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-/**
- * Add your docs here.
- */
 public class flipDrive extends InstantCommand {
-  /**
-   * Add your docs here.
-   */
+
   public flipDrive() {
     super();
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
   }
 
-  // Called once when the command executes
   @Override
   protected void initialize() {
     Robot.driveTrain.flip();

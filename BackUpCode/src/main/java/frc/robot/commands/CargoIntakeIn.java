@@ -28,8 +28,9 @@ public class CargoIntakeIn extends Command {
   @Override
   protected void execute() {
 
-    oof = .25 + (.75 * (Robot.m_oi.joystick1.getRawAxis(3) * Robot.m_oi.joystick1.getRawAxis(3) * Robot.m_oi.joystick1.getRawAxis(3)));
+    oof = .6;
     Robot.cargoIntake.power = oof;
+
     
   }
 

@@ -33,15 +33,15 @@ public class CargoIntakeOff extends Command {
     if(Robot.cargoIntake.power == -1) {
       Robot.cargoIntake.power = 1;
     }*/
-    Robot.cargoIntake.power = 0;
+    Robot.cargoIntake.power = .05;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
 
-    if(Robot.cargoIntake.power == 0) {
-      Robot.cargoIntake.power = 0;
+    if(Robot.cargoIntake.power == .05) {
+      Robot.cargoIntake.power = .05;
       return true;
     }
     return false;

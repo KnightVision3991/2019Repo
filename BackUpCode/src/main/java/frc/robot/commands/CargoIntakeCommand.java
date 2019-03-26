@@ -12,10 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class CargoIntakeCommand extends Command {
+  double oof;
   public CargoIntakeCommand() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-
     requires(Robot.cargoIntake);
   }
 
@@ -30,10 +28,11 @@ public class CargoIntakeCommand extends Command {
 
     
 
-    SmartDashboard.putBoolean("Limit Switch", Robot.cargoIntake.limitSwitch.get());
+      SmartDashboard.putBoolean("Limit Switch", Robot.cargoIntake.limitSwitch.get());
+      Robot.cargoIntake.usePower();
     
 
-    Robot.cargoIntake.usePower();
+
     
 
   }

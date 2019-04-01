@@ -107,6 +107,9 @@ public class CargoArm extends Subsystem {
     arm1.config_kF(0, kf);
     arm2.setInverted(true);
     arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    arm1.configMotionCruiseVelocity(60);
+    arm1.configMotionAcceleration(60);
+    arm1.configMotionSCurveStrength(3);
   }
   public void zeroPos(){
     arm1.setSelectedSensorPosition(0);
@@ -205,6 +208,21 @@ public class CargoArm extends Subsystem {
       armBrake.set(true);
     }
 
+  }
+  public void fMotionMagicControl(double oof){
+    double ff = -.131*Math.cos((arm1.getSelectedSensorPosition()*Math.PI*2/1000) - .12);
+    if((Math.abs(-oof - arm1.getSelectedSensorPosition()) > Constants.armTolerance)){
+      arm1.set(ControlMode.MotionMagic, -oof, DemandType.ArbitraryFeedForward, ff);
+      arm2.follow(arm1);
+      armBrake.set(false);
+    }
+    
+    if((Math.abs(-oof - arm1.getSelectedSensorPosition()) < Constants.armTolerance)){
+      //armBrake.set(DoubleSolenoid.Value.kReverse);
+      arm1.set(ControlMode.MotionMagic, -oof, DemandType.ArbitraryFeedForward, ff);
+      arm2.follow(arm1);
+      armBrake.set(true);
+    }
   }
   public void brakeArm(){
     armBrake.set(false);

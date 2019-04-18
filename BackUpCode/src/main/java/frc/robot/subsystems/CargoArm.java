@@ -116,7 +116,7 @@ public class CargoArm extends Subsystem {
   }
   public void useConfigPID(){
     //configPID(kP.getDouble(0), kI.getDouble(0), kD.getDouble(0), 0);
-    configPID(1.7, .001, 750, 0);
+    configPID(1.7, .001, 750, 34.1);
   }
   public void updatePos(){
     int pos = arm1.getSelectedSensorPosition();

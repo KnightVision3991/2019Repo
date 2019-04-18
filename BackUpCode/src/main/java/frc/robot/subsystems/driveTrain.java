@@ -39,6 +39,9 @@ public class driveTrain extends Subsystem {
   public DoubleSolenoid shift;
 
   int driveOof;
+  int peakCurrentOof;
+  int continuousCurrentOof;
+  int peakDurationOof;
 
   public driveTrain() {
     left1 = new WPI_TalonSRX(0);
@@ -63,6 +66,44 @@ public class driveTrain extends Subsystem {
 
     setMotorGains(left1, Constants.leftDriveGains, false);
     setMotorGains(right1, Constants.rightDriveGains, false);
+    
+    peakCurrentOof = 45;
+    peakDurationOof = 0;
+    continuousCurrentOof = 40;
+
+    //Current Limiting Bullshit
+
+    right1.enableCurrentLimit(true);
+    right1.configContinuousCurrentLimit(continuousCurrentOof);
+    right1.configPeakCurrentDuration(peakDurationOof);
+    right1.configPeakCurrentLimit(peakCurrentOof);
+
+    right2.enableCurrentLimit(true);
+    right2.configContinuousCurrentLimit(continuousCurrentOof);
+    right2.configPeakCurrentDuration(peakDurationOof);
+    right2.configPeakCurrentLimit(peakCurrentOof);
+
+    right3.enableCurrentLimit(true);
+    right3.configContinuousCurrentLimit(continuousCurrentOof);
+    right3.configPeakCurrentDuration(peakDurationOof);
+    right3.configPeakCurrentLimit(peakCurrentOof);
+
+    left1.enableCurrentLimit(true);
+    left1.configContinuousCurrentLimit(continuousCurrentOof);
+    left1.configPeakCurrentDuration(peakDurationOof);
+    left1.configPeakCurrentLimit(peakCurrentOof);
+
+    left2.enableCurrentLimit(true);
+    left2.configContinuousCurrentLimit(continuousCurrentOof);
+    left2.configPeakCurrentDuration(peakDurationOof);
+    left2.configPeakCurrentLimit(peakCurrentOof);
+
+    left3.enableCurrentLimit(true);
+    left3.configContinuousCurrentLimit(continuousCurrentOof);
+    left3.configPeakCurrentDuration(peakDurationOof);
+    left3.configPeakCurrentLimit(peakCurrentOof);
+
+
 
     driveOof = 1;
 
@@ -80,14 +121,18 @@ public class driveTrain extends Subsystem {
       double rightPow = throttle - rot; 
 
       left1.set(ControlMode.PercentOutput, -leftPow);
-      left2.set(ControlMode.Follower, 0);
-      left3.set(ControlMode.PercentOutput, 0);
-      left3.setNeutralMode(NeutralMode.Coast);
+      left2.follow(left1);
+      left3.follow(left1);
+      //left3.set(ControlMode.PercentOutput, 0);
+      //left3.setNeutralMode(NeutralMode.Coast);
 
       right1.set(ControlMode.PercentOutput, rightPow);
-      right2.set(ControlMode.Follower, 3);
-      right3.set(ControlMode.PercentOutput, 0);
-      right3.setNeutralMode(NeutralMode.Coast);
+      right2.follow(right1);
+      right3.follow(right1);
+      //right3.set(ControlMode.PercentOutput, 0);
+      //right3.setNeutralMode(NeutralMode.Coast);
+
+
 
 
 

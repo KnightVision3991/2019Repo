@@ -14,7 +14,7 @@ public class armToRocket extends InstantCommand {
   @Override
   protected void initialize() {
     Robot.CargoArm.setPos(110);
-    Robot.CargoArm.armBrake.set(false);
+    //Robot.CargoArm.armBrake.set(false);
 
     Robot.CargoArm.clearPID();
   }

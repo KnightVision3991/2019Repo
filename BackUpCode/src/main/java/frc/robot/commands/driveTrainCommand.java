@@ -53,6 +53,6 @@ public class driveTrainCommand extends Command {
 
   public double smoothedJoystick(double x) {
     //return (6 * Math.pow(x, 5)) - (15 * Math.pow(x, 4) + (10 * Math.pow(x, 3)));
-    return (.5 * Math.pow(x, 3)) + (.5 * x);
+    return x;//(.5 * Math.pow(x, 3)) + (.5 * x);
   }
 }

@@ -14,7 +14,7 @@ public class armToDefence extends InstantCommand {
   @Override
   protected void initialize() {
     Robot.CargoArm.setPos(250);
-    Robot.CargoArm.armBrake.set(false);
+    //Robot.CargoArm.armBrake.set(false);
     Robot.CargoArm.clearPID();
   }
 

@@ -39,8 +39,9 @@ public class CargoArmCommand extends Command {
     if(Robot.m_oi.Y.get()){
       Robot.CargoArm.setManualPower(Robot.m_oi.joystick2.getRawAxis(5)*Math.abs(Robot.m_oi.joystick2.getRawAxis(5)));
     }else{
-      Robot.CargoArm.fArmControl(Robot.CargoArm.armPosition());
+      //Robot.CargoArm.fArmControl(Robot.CargoArm.armPosition());
       //Robot.CargoArm.setManualPower(Robot.m_oi.joystick1.getRawAxis(5));
+      Robot.CargoArm.fMotionMagicControl(Robot.CargoArm.armPosition());
       Robot.CargoArm.updatePos();
       //Robot.CargoArm.PIDArm(Robot.CargoArm.getArmPos());
     }

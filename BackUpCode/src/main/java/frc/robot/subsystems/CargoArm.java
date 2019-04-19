@@ -19,6 +19,7 @@ import frc.robot.Robot;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -34,7 +35,7 @@ public class CargoArm extends Subsystem {
 
   WPI_TalonSRX arm1;
   WPI_TalonSRX arm2;
-  public Solenoid armBrake;
+  public DoubleSolenoid armBrake;
   int armPos;
   double armPosition;
   public static ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
@@ -65,7 +66,7 @@ public class CargoArm extends Subsystem {
   public CargoArm() {
     arm1 = new WPI_TalonSRX(6);
     arm2 = new WPI_TalonSRX(7);
-    armBrake = new Solenoid(3);
+    armBrake = new DoubleSolenoid(6,2);
     //arm1.setInverted(true);
     //arm2.setInverted(true);
     arm1.setNeutralMode(NeutralMode.Brake);
@@ -107,8 +108,8 @@ public class CargoArm extends Subsystem {
     arm1.config_kF(0, kf);
     arm2.setInverted(true);
     arm1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-    arm1.configMotionCruiseVelocity(60);
-    arm1.configMotionAcceleration(60);
+    arm1.configMotionCruiseVelocity(30);
+    arm1.configMotionAcceleration(10);
     arm1.configMotionSCurveStrength(3);
   }
   public void zeroPos(){
@@ -198,14 +199,14 @@ public class CargoArm extends Subsystem {
     if((Math.abs(-oof - arm1.getSelectedSensorPosition()) > Constants.armTolerance)){
       arm1.set(ControlMode.Position, -oof, DemandType.ArbitraryFeedForward, ff);
       arm2.follow(arm1);
-      armBrake.set(false);
+      armBrake.set(Value.kForward);
     }
     
     if((Math.abs(-oof - arm1.getSelectedSensorPosition()) < Constants.armTolerance)){
       //armBrake.set(DoubleSolenoid.Value.kReverse);
       arm1.set(ControlMode.Position, -oof, DemandType.ArbitraryFeedForward, ff);
       arm2.follow(arm1);
-      armBrake.set(true);
+      armBrake.set(Value.kReverse);
     }
 
   }
@@ -214,18 +215,18 @@ public class CargoArm extends Subsystem {
     if((Math.abs(-oof - arm1.getSelectedSensorPosition()) > Constants.armTolerance)){
       arm1.set(ControlMode.MotionMagic, -oof, DemandType.ArbitraryFeedForward, ff);
       arm2.follow(arm1);
-      armBrake.set(false);
+      armBrake.set(Value.kForward);
     }
     
     if((Math.abs(-oof - arm1.getSelectedSensorPosition()) < Constants.armTolerance)){
       //armBrake.set(DoubleSolenoid.Value.kReverse);
       arm1.set(ControlMode.MotionMagic, -oof, DemandType.ArbitraryFeedForward, ff);
       arm2.follow(arm1);
-      armBrake.set(true);
+      armBrake.set(Value.kReverse);
     }
   }
   public void brakeArm(){
-    armBrake.set(false);
+    armBrake.set(Value.kReverse);
     arm1.set(0);
     arm2.follow(arm1);
   }
